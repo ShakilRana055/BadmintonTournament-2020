@@ -1,0 +1,377 @@
+    <style>
+        .table tr th{
+            font-size: 10px !important;
+            font-weight: 900;
+            text-align: center;
+            background-color: #99ccff;
+        }
+        .table tr td{
+            font-size: 10px !important;
+            font-weight: 900;
+            text-align: center;
+        }
+        .eliminatorTeam{
+            background-color: hotpink;
+        }
+        .qualifiedTeam {
+            background-color: #77ff33;
+        }
+        .groupName{
+            font-weight: 700;
+            text-shadow: yellowgreen;
+            color: #ff3333;
+        }
+        ul li {
+            color: red;
+            font-weight: 700;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <div style="margin-left: 20px !important; margin-right: 20px !important; margin-top: 20px !important;">
+        <h4 style="text-align: center;" class="groupName">Dokkhin Pakulla Badminton Tournament-2020</h4>
+        <h6 style="text-align: center;" class="groupName">Point Table</h6>
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="groupName">Group A</h3>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Played</th>
+                            <th>W</th>
+                            <th>L</th>
+                            <th>Percentage</th>
+                            <th>Point</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groupA">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2">
+                <div style="margin-top: 60px;">
+                    <h6 class="groupName"> <span style="color: red;">*</span> Point Table Priority</h6>
+                    <ul>
+                        <li>Point</li>
+                        <li>Percentage</li>
+                        <li>Name(Alphabetical Order)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h3 class="groupName">Group B</h3>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Played</th>
+                            <th>W</th>
+                            <th>L</th>
+                            <th>Percentage</th>
+                            <th>Point</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groupB">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="row" style="font-size: 10px !important;">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+                <h3 class="groupName">Group C</h3>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Played</th>
+                            <th>W</th>
+                            <th>L</th>
+                            <th>Percentage</th>
+                            <th>Point</th>
+                        </tr>
+                    </thead>
+                    <tbody id="groupC">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        (function(){
+            let groupInformation = [];
+            class Group{
+                constructor(name, played, win, loose, percentage ,point){
+                    this.name = name;
+                    this.played = played;
+                    this.win = win;
+                    this.loose = loose;
+                    this.percentage = percentage;
+                    this.point = point;
+                }
+            }
+
+            function Swap(i, j)
+            {
+                let swap = groupInformation[i];
+                groupInformation[i] = groupInformation[j];
+                groupInformation[j] = swap;
+            }
+
+            function GroupA()
+            {
+                let data = [
+                    {
+                        "name": "Atiqul",
+                        "played":1,
+                        "win":0,
+                        "loose":1,
+                        "totalPoint":10,
+                        "point":0,
+                        "pointHistory": "10",
+                    },
+                    {
+                        "name": "Arif",
+                        "played":2,
+                        "win":2,
+                        "loose":0,
+                        "totalPoint":40,
+                        "point":6,
+                        "pointHistory": "20 + 20",
+                    },
+                    {
+                        "name": "Asif",
+                        "played":2,
+                        "win":0,
+                        "loose":2,
+                        "totalPoint":27,
+                        "point":0,
+                        "pointHistory": "9 + 18",
+                    },
+                    {
+                        "name": "Joni",
+                        "played":1,
+                        "win":1,
+                        "loose":0,
+                        "totalPoint":20,
+                        "point":3,
+                    },
+                
+                ];
+                let newData = BuildData(data);
+                return newData;
+            }
+            function GroupB()
+            {
+                let data = [
+                    {
+                        "name": "Shamim(2)",
+                        "played":1,
+                        "win":1,
+                        "loose":0,
+                        "totalPoint":20,
+                        "point":3,
+                        "pointHistory": "20 +",
+                    },
+                    {
+                        "name": "Jahidul",
+                        "played":2,
+                        "win":1,
+                        "loose":1,
+                        "totalPoint":35,
+                        "point":3,
+                        "pointHistory": "20 + 15",
+                    },
+                    {
+                        "name": "Hujur",
+                        "played":2,
+                        "win":0,
+                        "loose":2,
+                        "totalPoint":24,
+                        "point":0,
+                    },
+                    {
+                        "name": "Shakil",
+                        "played":1,
+                        "win":1,
+                        "loose":0,
+                        "totalPoint":20,
+                        "point":3,
+                    },
+                
+                ];
+                let newData = BuildData(data);
+                return newData;
+            }
+            function GroupC()
+            {
+                let data = [
+                    {
+                        "name": "Rubel",
+                        "played":2,
+                        "win":1,
+                        "loose":1,
+                        "totalPoint":34,
+                        "point":3,
+                        "pointHistory": "20 + 14",
+                    },
+                    {
+                        "name": "Rajib",
+                        "played":2,
+                        "win":1,
+                        "loose":1,
+                        "totalPoint":36,
+                        "point":3,
+                        "pointHistory": "16 + 20",
+                    },
+                    {
+                        "name": "Lotif",
+                        "played":2,
+                        "win":1,
+                        "loose":1,
+                        "totalPoint":38,
+                        "point":3,
+                        "pointHistory": "18 + 20",
+                    },
+                    {
+                        "name": "Tariqul",
+                        "played":2,
+                        "win":1,
+                        "loose":1,
+                        "totalPoint":34,
+                        "point":3,
+                        "pointHistory": "20 + 14",
+                    },
+                
+                ];
+                let newData = BuildData(data);
+                return newData;
+            }
+            function BuildData(data)
+            {
+                let information = [];
+                for(let i = 0; i < data.length; i ++)
+                {
+                    let name = data[i].name;
+                    let played = data[i].played;
+                    let win = data[i].win;
+                    let loose = data[i].loose;
+                    let point = data[i].point;
+                    let percentage = (data[i].totalPoint / 100).toFixed(2);
+                    let obj = new Group(name, played, win, loose, percentage, point );
+                    information.push(obj);
+                }
+                return information;
+            }
+            
+            function AlphabetChecker(first, second)
+            {
+                let isOk = "none";
+                let  taken = false;
+                if(first.length >= second.length)
+                {
+                    for(let i = 0; i < second.length; i ++)
+                    {
+                        if(second[i] > first[i] && taken === false){
+                            isOk = "second";
+                            taken = true;
+                        }
+                        else if(second[i] < first[i] && taken === false){
+                            isOk = "first";
+                            taken = true;
+                        }
+                    }
+                }
+                if(first.length < second.length)
+                {
+                    for(let i = 0; i < first.length; i ++)
+                    {
+                        if(second[i] < first[i] && taken === false){
+                            isOk = "first";
+                            taken = true;
+                        }
+                        else if(second[i] > first[i] && taken === false){
+                            isOk = "second";
+                            taken = true;
+                        }
+                    }
+                }
+                return isOk;
+            }
+            function Sort()
+            {
+                for(let  i = 0 ; i < groupInformation.length - 1; i ++)
+                {
+                    for(let j = 0 ; j < groupInformation.length - 1 - i; j ++)
+                    {
+                        if(groupInformation[j].point < groupInformation[j+1].point)
+                        {
+                            Swap(j , j + 1);
+                        }
+                        else if( groupInformation[j].percentage < groupInformation[j+1].percentage  && 
+                                groupInformation[j].point === groupInformation[j+1].point)
+                        {
+                            Swap(j + 1 , j);
+                        }
+                        else if(groupInformation[j].percentage === groupInformation[j+1].percentage  && 
+                                groupInformation[j].point === groupInformation[j+1].point)
+                        {
+                            let answer = AlphabetChecker(groupInformation[j].name, groupInformation[j+1].name);
+                            console.log(answer+ "-----------------------------------------------------------");
+                            console.log(groupInformation[j].name);
+                            console.log(groupInformation[j+1].name);
+                            if(answer === "first"){
+                                Swap(j , j + 1);
+                            }
+                        }
+                    }
+                }
+            }
+            function HtmlBuilder(tableId)
+            {
+                let html = "";
+                for(let i = 0; i < groupInformation.length;i ++)
+                {
+                    html += ` <tr class = ${ i < 2 ? "qualifiedTeam": "eliminatorTeam" } >
+                        <td>${groupInformation[i].name}</td>
+                        <td>${groupInformation[i].played}</td>
+                        <td>${groupInformation[i].win}</td>
+                        <td>${groupInformation[i].loose}</td>
+                        <td>${groupInformation[i].percentage}</td>
+                        <td>${groupInformation[i].point}</td>
+                    </tr>`
+                }
+                $(tableId).html(html);
+                groupInformation = [];
+            }
+            window.onload = function(){
+                groupInformation = GroupA();
+                Sort();
+                HtmlBuilder("#groupA");
+
+                groupInformation = GroupB();
+                Sort();
+                HtmlBuilder("#groupB");
+
+                groupInformation = GroupC();
+                Sort();
+                HtmlBuilder("#groupC");
+            };
+        })();
+        
+    </script>
