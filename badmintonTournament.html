@@ -335,9 +335,7 @@
                                 groupInformation[j].point === groupInformation[j+1].point)
                         {
                             let answer = AlphabetChecker(groupInformation[j].name, groupInformation[j+1].name);
-                            console.log(answer+ "-----------------------------------------------------------");
-                            console.log(groupInformation[j].name);
-                            console.log(groupInformation[j+1].name);
+                            
                             if(answer === "first"){
                                 Swap(j , j + 1);
                             }

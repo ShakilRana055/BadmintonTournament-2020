@@ -1,0 +1,267 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+    .table tr th{
+        font-size: 10px !important;
+        font-weight: 900;
+        text-align: center;
+        background-color: #99ccff;
+    }
+    .table tr td{
+        font-size: 10px !important;
+        font-weight: 900;
+        text-align: center;
+    }
+    .eliminatorTeam{
+        background-color: hotpink;
+    }
+    .qualifiedTeam {
+        background-color: #77ff33;
+    }
+    .groupName{
+        font-weight: 700;
+        text-shadow: yellowgreen;
+        color: #ff3333;
+    }
+    ul li {
+        color: red;
+        font-weight: 700;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+
+
+<div style="margin-left: 20px !important; margin-right: 20px !important; margin-top: 20px !important;">
+    <h4 style="text-align: center;" class="groupName">Dokkhin Pakulla Badminton Tournament-2020</h4>
+    <h6 style="text-align: center;" class="groupName">Round-02 Point Table</h6>
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <h3 class="groupName">Round-02</h3>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>PF</th>
+                            <th>PA</th>
+                            <th>Point</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="roundTwo">
+
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8" style="font-weight: 700;">
+            PF => Percentage For <br/>
+            PA => Percentage Against
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    (function(){
+        class group{
+            constructor(name, percentage, percentageFor, percentageAgainst, point, status)
+            {
+                this.name = name;
+                this.percentage = percentage;
+                this.percentageFor = percentageFor;
+                this.percentageAgainst = percentageAgainst;
+                this.point = point;
+                this.status = status;
+            }
+        }
+
+        function Swap(i , j, groupInformation)
+        {
+            let swap = groupInformation[i];
+            groupInformation[i] = groupInformation[j];
+            groupInformation[j] = swap;
+        }
+        function AlphabetChecker(first, second)
+        {
+            let isOk = "none";
+            let  taken = false;
+            if(first.length >= second.length)
+            {
+                for(let i = 0; i < second.length; i ++)
+                {
+                    if(second[i] > first[i] && taken === false){
+                        isOk = "second";
+                        taken = true;
+                    }
+                    else if(second[i] < first[i] && taken === false){
+                        isOk = "first";
+                        taken = true;
+                    }
+                }
+            }
+            if(first.length < second.length)
+            {
+                for(let i = 0; i < first.length; i ++)
+                {
+                    if(second[i] < first[i] && taken === false){
+                        isOk = "first";
+                        taken = true;
+                    }
+                    else if(second[i] > first[i] && taken === false){
+                        isOk = "second";
+                        taken = true;
+                    }
+                }
+            }
+            return isOk;
+        }
+        function BuildData(information)
+        {
+            let data = [];
+            for(let i = 0; i< information.length;i ++)
+            {
+                let name = information[i].name;
+                let percentage = information[i].percentage;
+                let percentageFor = information[i].percentageFor;
+                let percentageAgainst = information[i].percentageAgainst;
+                let point = information[i].point;
+                let status = information[i].status;
+                let obj = new group(name, percentage, percentageFor, percentageAgainst, point, status);
+                data.push(obj);
+            }
+            return data;
+        }
+        function Sort(groupInformation)
+        {
+            for(let i = 0; i < groupInformation.length - 1; i ++)
+            {
+                for(let j = 0; j < groupInformation.length - 1 - i; j ++)
+                {
+                    if(groupInformation[j].point < groupInformation[j + 1].point)
+                    {
+                        Swap(j , j + 1, groupInformation);
+                    }
+                    else if(groupInformation[j].point === groupInformation[j + 1].point){
+                        let answer = AlphabetChecker(groupInformation[j].name, groupInformation[j+1].name);
+                        if(answer === "first"){
+                            Swap(j , j + 1, groupInformation);
+                        }
+                    }
+                }
+            }
+            return groupInformation;
+        }
+
+        function RoundTwo()
+        {
+            let data = [
+                {
+                    "name": "Joni",
+                    "percentage":0,
+                    "percentageFor": 0,
+                    "percentageAgainst": 0,
+                    "point":0,
+                    "status": [ 0, 0 , 0 ],
+                },
+                {
+                    "name": "Arif",
+                    "percentage":0,
+                    "percentageFor": 0,
+                    "percentageAgainst": 0,
+                    "point":0,
+                    "status": [ 0 , 0 , 0 ],
+                },
+                {
+                    "name": "Shamim",
+                    "percentage":0,
+                    "percentageFor": 0,
+                    "percentageAgainst": 0,
+                    "point":0,
+                    "status": [ 0 , 0 , 0 ],
+                },
+                {
+                    "name": "Shakil",
+                    "percentage":0,
+                    "percentageFor": 0,
+                    "percentageAgainst": 0,
+                    "point":0,
+                    "status": [ 0 , 0 , 0 ],
+                },
+                {
+                    "name": "Rajib",
+                    "percentage":0,
+                    "percentageFor": 0,
+                    "percentageAgainst": 0,
+                    "point":0,
+                    "status": [ 0 , 0 , 0 ],
+                },
+                {
+                    "name": "Rubel",
+                    "percentage":0,
+                    "percentageFor": 0,
+                    "percentageAgainst": 0,
+                    "point":0,
+                    "status": [ 0 , 0 , 0 ],
+                },
+            ];
+            return data;
+        }
+        function BuildHtml(information)
+        {
+            console.log("here");
+            console.log(information);
+            let html = "";
+            for(let  i = 0 ; i < information.length; i ++)
+            {
+                let name = information[i].name;
+                let percentage = information[i].percentage;
+                let percentageFor = information[i].percentageFor;
+                let percentageAgainst = information[i].percentageAgainst;
+                let point = information[i].point;
+                let status = information[i].status;
+                let subHtml = "";
+                for(let j = 0 ; j < status.length; j ++)
+                {
+                    if( status[j] === 1)
+                    {
+                        subHtml += `<input type="radio" checked = "checked" />`;
+                    }
+                    else{
+                        subHtml += `<input type="radio" />`;
+                    }
+                }
+                console.log(subHtml);
+                html += `<tr class = ${ i < 3 ? "qualifiedTeam": "eliminatorTeam"}>
+                    <td>${name}</td>
+                    <td>${percentageFor}</td>
+                    <td>${percentageAgainst}</td>
+                    <td>${point}</td>
+                    <td>
+                        <div class="">${subHtml}</div>
+                    </td>
+                </tr>`;
+            }
+            $("#roundTwo").html(html);
+        }
+        window.onload = function(){
+            let information = RoundTwo();
+            let groupInformation = BuildData(information);
+            BuildHtml(Sort(groupInformation));
+        }
+
+    })();
+</script>
