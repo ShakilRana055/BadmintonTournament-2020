@@ -155,7 +155,16 @@
                     {
                         Swap(j , j + 1, groupInformation);
                     }
-                    else if(groupInformation[j].point === groupInformation[j + 1].point){
+                    else if(groupInformation[j].point === groupInformation[j + 1].point &&
+                            groupInformation[j].percentageAgainst > groupInformation[j + 1].percentageAgainst)
+                    {
+                        Swap(j , j + 1, groupInformation);
+                    }
+                    else if(
+                        groupInformation[j].point === groupInformation[j + 1].point &&
+                            groupInformation[j].percentageAgainst === groupInformation[j + 1].percentageAgainst &&
+                            groupInformation[j].point === groupInformation[j + 1].point)
+                    {
                         let answer = AlphabetChecker(groupInformation[j].name, groupInformation[j+1].name);
                         if(answer === "first"){
                             Swap(j , j + 1, groupInformation);
