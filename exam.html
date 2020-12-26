@@ -1,0 +1,26 @@
+
+
+<script>
+// 1/a 1
+    $(".qa-secret-image").css("border", "10 px solid black");
+    $("h2").css("display", "hidden");
+// 1/a 2
+    $("#more-from").removeClass("gel-great-primer");
+    $("#more-from").removeClass("tab_title");
+
+// 1/a 3
+    $(".more-from_item-link").attr("href", "/strong/2018_HKB");
+// 1/a 4
+    let count = 0;
+    $(".summary-points_item").each(function(){
+        count++ ;
+        if(count === 3)
+        {
+            $(this).text("results are outstanding?");
+        }
+    });
+// 1/a 5
+    $(document).on("click", ".o-panel_item", function(){
+        alert("welcome to out news site");
+    });
+</script>

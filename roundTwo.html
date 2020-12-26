@@ -181,58 +181,69 @@
                 {
                     "name": "Joni",
                     "percentage":0,
-                    "percentageFor": 0,
-                    "percentageAgainst": 0,
-                    "point":0,
-                    "status": [ 0, 0 , 0 ],
+                    "percentageFor": 58,
+                    "percentageAgainst": 46,
+                    "point":3,
+                    "status": [ 1, 0 , 1 ],
+                    "percentageForHistory": "20 + 18 + 20",
+                    "percentageAgainstHistory": "12 + 20 + 14",
                 },
                 {
                     "name": "Arif",
                     "percentage":0,
-                    "percentageFor": 0,
-                    "percentageAgainst": 0,
+                    "percentageFor": 49,
+                    "percentageAgainst": 56,
                     "point":0,
-                    "status": [ 0 , 0 , 0 ],
+                    "status": [ 1 , 0 , 0 ],
+                    "percentageForHistory": "20 + 15 + 14",
+                    "percentageAgainstHistory": "16 + 20 + 20",
                 },
                 {
                     "name": "Shamim",
                     "percentage":0,
-                    "percentageFor": 0,
-                    "percentageAgainst": 0,
-                    "point":0,
-                    "status": [ 0 , 0 , 0 ],
+                    "percentageFor": 56,
+                    "percentageAgainst": 49,
+                    "point":3,
+                    "status": [ 0 , 1 , 1 ],
+                    "percentageForHistory": "16 + 20 + 20",
+                    "percentageAgainstHistory": "20 + 15 + 14",
                 },
                 {
                     "name": "Shakil",
                     "percentage":0,
-                    "percentageFor": 0,
-                    "percentageAgainst": 0,
+                    "percentageFor": 56,
+                    "percentageAgainst": 55,
                     "point":0,
-                    "status": [ 0 , 0 , 0 ],
+                    "status": [ 1 , 0 , 0 ],
+                    "percentageForHistory": "20 + 18 + 18",
+                    "percentageAgainstHistory": "15 + 20 + 20",
                 },
                 {
                     "name": "Rajib",
                     "percentage":0,
-                    "percentageFor": 0,
-                    "percentageAgainst": 0,
-                    "point":0,
-                    "status": [ 0 , 0 , 0 ],
+                    "percentageFor": 55,
+                    "percentageAgainst": 56,
+                    "point":3,
+                    "status": [ 0, 1, 1 ],
+                    "percentageForHistory": "15 + 20 + 20",
+                    "percentageAgainstHistory": "20 + 18 + 18",
                 },
                 {
                     "name": "Rubel",
                     "percentage":0,
-                    "percentageFor": 0,
-                    "percentageAgainst": 0,
+                    "percentageFor": 46,
+                    "percentageAgainst": 58,
                     "point":0,
-                    "status": [ 0 , 0 , 0 ],
+                    "status": [ 0 , 1 , 0 ],
+                    "pointHistory": "",
+                    "percentageForHistory": "12 + 20 + 14",
+                    "percentageAgainstHistory": "20 + 18 + 20",
                 },
             ];
             return data;
         }
         function BuildHtml(information)
         {
-            console.log("here");
-            console.log(information);
             let html = "";
             for(let  i = 0 ; i < information.length; i ++)
             {
@@ -256,9 +267,9 @@
                 console.log(subHtml);
                 html += `<tr class = ${ i < 3 ? "qualifiedTeam": "eliminatorTeam"}>
                     <td>${name}</td>
-                    <td>${percentageFor}</td>
-                    <td>${percentageAgainst}</td>
-                    <td>${point}</td>
+                    <td>${(percentageFor / 100).toFixed(2)}</td>
+                    <td>${(percentageAgainst / 100).toFixed(2)}</td>
+                    <td>${point.toFixed(2)}</td>
                     <td>
                         <div class="">${subHtml}</div>
                     </td>
